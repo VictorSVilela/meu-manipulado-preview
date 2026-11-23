@@ -1,7 +1,7 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 
-export type DemoPanel = 'conta' | 'favoritos' | 'carrinho' | 'solicitacao' | 'conteudos' | 'sobre' | 'contato';
+export type DemoPanel = 'conta' | 'favoritos' | 'carrinho' | 'solicitacao' | 'conteudos' | 'sobre' | 'contato' | 'pedidos';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +13,9 @@ export type DemoPanel = 'conta' | 'favoritos' | 'carrinho' | 'solicitacao' | 'co
           <img src="assets/home/capsula-digital-creme.svg" alt="" width="32" height="55">
           <span><b>meu<br>manipulado</b><small>SAÚDE PERSONALIZADA</small></span>
         </a>
+        <h1 class="mobile-greeting"><strong>Olá!</strong>Como podemos<br> cuidar da sua saúde hoje?</h1>
         <form class="search" role="search" (submit)="submit($event, query.value)">
-          <input pInputText #query type="search" aria-label="Buscar produtos" placeholder="Buscar produtos, fórmulas, ativos ou conteúdos..." [value]="searchQuery()" (input)="searchChange.emit(query.value)">
+          <input pInputText #query type="search" aria-label="Buscar produtos" placeholder="Buscar produtos, fórmulas…" [value]="searchQuery()" (input)="searchChange.emit(query.value)">
           <button type="submit" aria-label="Buscar"><svg aria-hidden="true"><use href="assets/home/interface.svg#search"/></svg></button>
         </form>
         <div class="header-actions">
@@ -24,11 +25,8 @@ export type DemoPanel = 'conta' | 'favoritos' | 'carrinho' | 'solicitacao' | 'co
             <span class="cart-icon"><svg aria-hidden="true"><use href="assets/home/interface.svg#cart"/></svg><small>{{ cartCount() }}</small></span><span>Carrinho</span>
           </button>
         </div>
-        <button class="mobile-menu" type="button" aria-label="Menu principal" aria-controls="menu-principal" [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">
-          <svg aria-hidden="true"><use href="assets/home/interface.svg#menu"/></svg>
-        </button>
       </div>
-      <nav id="menu-principal" aria-label="Navegação principal" [class.open]="menuOpen()" (click)="menuOpen.set(false)">
+      <nav id="menu-principal" aria-label="Navegação principal">
         <a class="nav-current" href="#inicio">Início</a>
         <a href="#manipulados">Manipulados</a>
         <a href="#destaques" (click)="reset.emit()">Produtos</a>
@@ -48,7 +46,6 @@ export class HeaderComponent {
   readonly panel = output<DemoPanel>();
   readonly promotions = output<void>();
   readonly reset = output<void>();
-  protected readonly menuOpen = signal(false);
 
   protected submit(event: Event, query: string) {
     event.preventDefault();

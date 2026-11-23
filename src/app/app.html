@@ -3,10 +3,13 @@
 
 <main id="conteudo">
   <app-hero-banner (requestForm)="openPanel(demoDialog, 'solicitacao')"/>
+  <app-mobile-shortcuts (panel)="openPanel(demoDialog, $event)" (reset)="resetFilters()" (promotions)="showPromotions()"/>
   <app-categories [active]="category()" (selectCategory)="selectCategory($event)"/>
   <app-featured-products [products]="shownProducts()" [favorites]="favorites()" (showAll)="resetFilters()" (toggleFavorite)="toggleFavorite($event)" (addToCart)="addToCart($event)"/>
   <app-manipulation-banner (requestForm)="openPanel(demoDialog, 'solicitacao')"/>
 </main>
+
+<app-mobile-navigation (panel)="openPanel(demoDialog, $event)" (reset)="resetFilters()"/>
 
 <dialog #demoDialog class="demo-dialog" aria-labelledby="demo-title">
   <h2 id="demo-title">{{ panelDetails().title }}</h2>

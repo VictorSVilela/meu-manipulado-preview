@@ -5,6 +5,7 @@ import { FeaturedProductsComponent } from './home/featured-products';
 import { DemoPanel, HeaderComponent } from './home/header';
 import { HeroBannerComponent } from './home/hero-banner';
 import { ManipulationBannerComponent } from './home/manipulation-banner';
+import { MobileNavigationComponent, MobileShortcutsComponent } from './home/mobile-home';
 
 const panelDetails: Record<DemoPanel, { title: string; text: string }> = {
   conta: { title: 'Entrar / Criar conta', text: 'A área de conta está disponível apenas para demonstração.' },
@@ -14,11 +15,12 @@ const panelDetails: Record<DemoPanel, { title: string; text: string }> = {
   conteudos: { title: 'Conteúdos', text: 'Os conteúdos da loja serão publicados aqui.' },
   sobre: { title: 'Sobre o Meu Manipulado', text: 'Esta é uma demonstração da loja Meu Manipulado.' },
   contato: { title: 'Contato', text: 'O canal de atendimento será disponibilizado aqui.' },
+  pedidos: { title: 'Pedidos', text: 'Esta apresentação não registra pedidos. Consulte o carrinho para ver os itens selecionados na demonstração.' },
 };
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, HeroBannerComponent, CategoriesComponent, FeaturedProductsComponent, ManipulationBannerComponent],
+  imports: [HeaderComponent, HeroBannerComponent, CategoriesComponent, FeaturedProductsComponent, ManipulationBannerComponent, MobileShortcutsComponent, MobileNavigationComponent],
   templateUrl: './app.html',
 })
 export class App {

@@ -10,7 +10,7 @@ describe('Home Meu Manipulado', () => {
 
   it('renderiza a home com os cinco produtos demonstrativos sem configurar HTTP', () => {
     const { page } = render();
-    expect(page.querySelector('h1')?.textContent).toMatch(/Saúde\s*Personalizada\s*para você/);
+    expect(page.querySelector('#hero-title')?.textContent).toMatch(/Saúde\s*Personalizada\s*para você/);
     expect(page.querySelectorAll('.categories button').length).toBe(8);
     expect(page.querySelectorAll('article').length).toBe(5);
     expect(page.querySelector('.demo-label')?.textContent).toContain('demonstrativo');
@@ -39,17 +39,28 @@ describe('Home Meu Manipulado', () => {
     expect(favorite.getAttribute('aria-pressed')).toBe('false');
   });
 
-  it('abre o menu responsivo e apresenta a solicitação como demonstração', () => {
+  it('usa os atalhos mobile para abrir o catálogo e a solicitação demonstrativa', () => {
     const { page, fixture } = render();
-    const menu = page.querySelector<HTMLButtonElement>('.mobile-menu')!;
-    menu.click();
+    const promotion = page.querySelector<HTMLAnchorElement>('.mobile-shortcuts a:nth-of-type(2)')!;
+    promotion.addEventListener('click', event => event.preventDefault());
+    promotion.click();
     fixture.detectChanges();
-    expect(menu.getAttribute('aria-expanded')).toBe('true');
-    page.querySelector<HTMLButtonElement>('.formula-banner button')!.click();
+    expect(page.querySelectorAll('article').length).toBe(2);
+    page.querySelector<HTMLButtonElement>('.mobile-formula')!.click();
     fixture.detectChanges();
     const dialog = page.querySelector<HTMLDialogElement>('dialog')!;
     expect(dialog.open).toBeTrue();
     expect(dialog.textContent).toContain('demonstra');
+    dialog.close();
+  });
+
+  it('abre Pedidos pela barra inferior como demonstração', () => {
+    const { page, fixture } = render();
+    page.querySelector<HTMLButtonElement>('.mobile-navigation button:nth-of-type(2)')!.click();
+    fixture.detectChanges();
+    const dialog = page.querySelector<HTMLDialogElement>('dialog')!;
+    expect(dialog.open).toBeTrue();
+    expect(dialog.querySelector('h2')?.textContent).toBe('Pedidos');
     dialog.close();
   });
 });
