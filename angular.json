@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "cli": {
+    "analytics": false
+  },
+  "projects": {
+    "loja": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "index": "src/index.html",
+            "baseHref": "/meu-manipulado-preview/",
+            "assets": [
+              { "glob": "**/*", "input": "public", "output": "/" },
+              { "glob": "LICENSE", "input": "node_modules/@fontsource/poppins", "output": "/licenses/poppins" }
+            ],
+            "polyfills": [
+              "zone.js"
+            ],
+            "styles": [
+              "src/styles.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "servePath": "/meu-manipulado-preview/"
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "loja:build:development"
+            },
+            "production": {
+              "buildTarget": "loja:build:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [{ "glob": "**/*", "input": "public", "output": "/" }],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

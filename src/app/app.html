@@ -1,0 +1,25 @@
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<app-header [cartCount]="cartCount()" [searchQuery]="query()" (searchChange)="search($event)" (panel)="openPanel(demoDialog, $event)" (reset)="resetFilters()" (promotions)="showPromotions()"/>
+
+<main id="conteudo">
+  <app-hero-banner (requestForm)="openPanel(demoDialog, 'solicitacao')"/>
+  <app-categories [active]="category()" (selectCategory)="selectCategory($event)"/>
+  <app-featured-products [products]="shownProducts()" [favorites]="favorites()" (showAll)="resetFilters()" (toggleFavorite)="toggleFavorite($event)" (addToCart)="addToCart($event)"/>
+  <app-manipulation-banner (requestForm)="openPanel(demoDialog, 'solicitacao')"/>
+</main>
+
+<dialog #demoDialog class="demo-dialog" aria-labelledby="demo-title">
+  <h2 id="demo-title">{{ panelDetails().title }}</h2>
+  <p>{{ panelDetails().text }}</p>
+  @if (panel() === 'favoritos') {
+    @if (favoriteProducts().length) {
+      <ul>@for (product of favoriteProducts(); track product.id) { <li>{{ product.name }}</li> }</ul>
+    } @else { <p>Nenhum favorito selecionado.</p> }
+  }
+  @if (panel() === 'carrinho') {
+    @if (cartProducts().length) {
+      <ul>@for (product of cartProducts(); track product.id) { <li>{{ cart()[product.id] }} × {{ product.name }}</li> }</ul>
+    } @else { <p>Seu carrinho demonstrativo está vazio.</p> }
+  }
+  <form method="dialog"><button class="pill" autofocus>Fechar</button></form>
+</dialog>

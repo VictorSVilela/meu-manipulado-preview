@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="4"/><path d="M3 22v-2a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v2z"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5 5 0 0 0-7.1 0L12 6.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21l8.8-9.3a5 5 0 0 0 0-7.1Z"/></symbol>
+<symbol id="cart" viewBox="0 0 24 24"><path d="M1 2h4l3.4 14h11M6 5h16l-2 8H8"/><circle cx="10" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M3 12h17m-7-7 7 7-7 7"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M3 5h18M3 12h18M3 19h18"/></symbol>
+<symbol id="chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></symbol>
+</svg>

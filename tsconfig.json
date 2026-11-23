@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "experimentalDecorators": true,
+    "isolatedModules": true
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  }
+}
